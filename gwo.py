@@ -1,12 +1,10 @@
 import numpy as np
 
 class GWO:
-
     def __init__(self, n_wolves, n_dimensions, search_range):
         self.n_wolves = n_wolves
         self.n_dimensions = n_dimensions
         self.search_range = search_range
-        
         self.positions = None
         self.alpha_pos = np.zeros(n_dimensions)
         self.alpha_score = np.inf
@@ -23,10 +21,8 @@ class GWO:
 
     def optimize(self, max_iter, fixed_r_values):
         history = []
-
         for t in range(max_iter):
             fitness = np.apply_along_axis(self.sphere_function, 1, self.positions)
-
             for i in range(self.n_wolves):
                 if fitness[i] < self.alpha_score:
                     self.delta_score = self.beta_score
@@ -43,7 +39,6 @@ class GWO:
                 elif fitness[i] > self.beta_score and fitness[i] < self.delta_score:
                     self.delta_score = fitness[i]
                     self.delta_pos = self.positions[i].copy()
-            
             iter_log = {
                 "iteration": t + 1,
                 "positions_before": self.positions.copy(),
@@ -77,11 +72,9 @@ class GWO:
             
             self.positions = new_positions
             self.positions = np.clip(self.positions, self.search_range[0], self.search_range[1])
-            
             iter_log["a"] = a
             iter_log["r1"] = r1
             iter_log["r2"] = r2
             iter_log["positions_after"] = self.positions.copy()
             history.append(iter_log)
-
         return self.alpha_pos, self.alpha_score, history

@@ -1,7 +1,6 @@
 import numpy as np
 
 class PSO:
-
     def __init__(self, n_particles, n_dimensions, search_range, w, c1, c2):
         self.n_particles = n_particles
         self.n_dimensions = n_dimensions
@@ -9,7 +8,6 @@ class PSO:
         self.w = w
         self.c1 = c1
         self.c2 = c2
-
         self.positions = None
         self.velocities = None
         self.pbest_positions = None
@@ -24,7 +22,6 @@ class PSO:
         self.positions = np.array(initial_positions)
         self.velocities = np.array(initial_velocities)
         self.pbest_positions = np.copy(self.positions)
-        
         for i in range(self.n_particles):
             fitness = self.sphere_function(self.positions[i])
             self.pbest_values[i] = fitness
@@ -34,7 +31,6 @@ class PSO:
 
     def optimize(self, max_iter, fixed_r_values):
         history = []
-
         for t in range(max_iter):
             iter_log = {
                 "iteration": t + 1,
@@ -46,14 +42,12 @@ class PSO:
             }
 
             r1, r2 = fixed_r_values[t]
-
             for i in range(self.n_particles):
                 cognitive_component = self.c1 * r1 * (self.pbest_positions[i] - self.positions[i])
                 social_component = self.c2 * r2 * (self.gbest_position - self.positions[i])
                 self.velocities[i] = self.w * self.velocities[i] + cognitive_component + social_component
                 self.positions[i] = self.positions[i] + self.velocities[i]
                 self.positions[i] = np.clip(self.positions[i], self.search_range[0], self.search_range[1])
-
                 current_fitness = self.sphere_function(self.positions[i])
                 if current_fitness < self.pbest_values[i]:
                     self.pbest_values[i] = current_fitness
@@ -62,7 +56,6 @@ class PSO:
                 if current_fitness < self.gbest_value:
                     self.gbest_value = current_fitness
                     self.gbest_position = self.positions[i]
-
             iter_log["r1"] = r1
             iter_log["r2"] = r2
             iter_log["velocities_after"] = np.copy(self.velocities)
@@ -71,5 +64,4 @@ class PSO:
             iter_log["gbest_value_after"] = self.gbest_value
             iter_log["gbest_position_after"] = np.copy(self.gbest_position)
             history.append(iter_log)
-
         return self.gbest_position, self.gbest_value, history
