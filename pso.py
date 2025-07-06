@@ -1,21 +1,8 @@
 import numpy as np
 
 class PSO:
-    """
-    Implementasi Particle Swarm Optimization (PSO).
-    """
-    def __init__(self, n_particles, n_dimensions, search_range, w, c1, c2):
-        """
-        Inisialisasi algoritma PSO.
 
-        Args:
-            n_particles (int): Jumlah partikel.
-            n_dimensions (int): Jumlah dimensi (variabel).
-            search_range (tuple): Rentang pencarian (min, max).
-            w (float): Bobot inersia.
-            c1 (float): Koefisien kognitif.
-            c2 (float): Koefisien sosial.
-        """
+    def __init__(self, n_particles, n_dimensions, search_range, w, c1, c2):
         self.n_particles = n_particles
         self.n_dimensions = n_dimensions
         self.search_range = search_range
@@ -31,13 +18,9 @@ class PSO:
         self.gbest_value = np.inf
 
     def sphere_function(self, x):
-        """Fungsi Sphere: f(x) = sum(x_i^2)."""
         return np.sum(x**2)
 
     def initialize_population_manual(self, initial_positions, initial_velocities):
-        """
-        Inisialisasi populasi dengan nilai yang telah ditentukan.
-        """
         self.positions = np.array(initial_positions)
         self.velocities = np.array(initial_velocities)
         self.pbest_positions = np.copy(self.positions)
@@ -50,16 +33,6 @@ class PSO:
                 self.gbest_position = self.positions[i]
 
     def optimize(self, max_iter, fixed_r_values):
-        """
-        Menjalankan proses optimasi PSO.
-
-        Args:
-            max_iter (int): Jumlah maksimum iterasi.
-            fixed_r_values (list of tuples): Nilai r1 dan r2 yang telah ditentukan untuk setiap iterasi.
-
-        Returns:
-            tuple: Posisi terbaik global, nilai terbaik global, dan riwayat proses.
-        """
         history = []
 
         for t in range(max_iter):

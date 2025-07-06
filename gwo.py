@@ -1,18 +1,8 @@
 import numpy as np
 
 class GWO:
-    """
-    Implementasi Grey Wolf Optimizer (GWO).
-    """
-    def __init__(self, n_wolves, n_dimensions, search_range):
-        """
-        Inisialisasi algoritma GWO.
 
-        Args:
-            n_wolves (int): Jumlah serigala (populasi).
-            n_dimensions (int): Jumlah dimensi (variabel).
-            search_range (tuple): Rentang pencarian (min, max).
-        """
+    def __init__(self, n_wolves, n_dimensions, search_range):
         self.n_wolves = n_wolves
         self.n_dimensions = n_dimensions
         self.search_range = search_range
@@ -26,26 +16,12 @@ class GWO:
         self.delta_score = np.inf
 
     def sphere_function(self, x):
-        """Fungsi Sphere: f(x) = sum(x_i^2)."""
         return np.sum(x**2)
 
     def initialize_population_manual(self, initial_positions):
-        """
-        Inisialisasi populasi dengan nilai yang telah ditentukan.
-        """
         self.positions = np.array(initial_positions)
 
     def optimize(self, max_iter, fixed_r_values):
-        """
-        Menjalankan proses optimasi GWO.
-
-        Args:
-            max_iter (int): Jumlah maksimum iterasi.
-            fixed_r_values (list of tuples): Nilai r1 dan r2 yang telah ditentukan untuk setiap iterasi.
-
-        Returns:
-            tuple: Posisi terbaik (alpha), nilai terbaik (alpha), dan riwayat proses.
-        """
         history = []
 
         for t in range(max_iter):
