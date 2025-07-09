@@ -35,7 +35,7 @@ st.sidebar.title("Pengaturan Simulasi")
 algo_choice = st.sidebar.selectbox("Pilih Algoritma Optimasi:", ["PSO", "GWO"])
 
 
-# LOGIKA UNTUK PSO
+# LOGIKA UNTUK PSO Juli 
 if algo_choice == "PSO":
     st.header("Particle Swarm Optimization (PSO)")
     W = 0.7
@@ -89,11 +89,7 @@ if algo_choice == "PSO":
         convergence_df = pd.DataFrame(convergence_data).set_index('Iterasi')
         st.line_chart(convergence_df)
 
-
-
-
-# LOGIKA UNTUK GWO
-
+# LOGIKA UNTUK GWO Gr
 elif algo_choice == "GWO":
     st.header("Grey Wolf Optimizer (GWO)")
     FIXED_R_GWO = [(0.6, 0.3), (0.1, 0.8), (0.7, 0.2), (0.4, 0.9), (0.5, 0.1)]

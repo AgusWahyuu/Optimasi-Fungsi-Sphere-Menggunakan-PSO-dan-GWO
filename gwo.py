@@ -1,5 +1,6 @@
 import numpy as np
 
+# Bagian dian – Struktur, Inisialisasi, dan Evaluasi Fitness
 class GWO:
     def __init__(self, n_wolves, n_dimensions, search_range):
         self.n_wolves = n_wolves
@@ -48,6 +49,9 @@ class GWO:
                 "delta_pos": self.delta_pos.copy(),
                 "best_fitness": self.alpha_score
             }
+# Selesai Bagian 
+
+# Bagian wahyu – Perhitungan Parameter, Update Posisi, dan History
 
             a = 2 - t * (2 / max_iter)
             r1, r2 = fixed_r_values[t]
@@ -78,3 +82,4 @@ class GWO:
             iter_log["positions_after"] = self.positions.copy()
             history.append(iter_log)
         return self.alpha_pos, self.alpha_score, history
+# 

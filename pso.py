@@ -1,5 +1,5 @@
 import numpy as np
-
+# Bagian MPR
 class PSO:
     def __init__(self, n_particles, n_dimensions, search_range, w, c1, c2):
         self.n_particles = n_particles
@@ -29,6 +29,8 @@ class PSO:
                 self.gbest_value = fitness
                 self.gbest_position = self.positions[i]
 
+
+# Bagian DMS
     def optimize(self, max_iter, fixed_r_values):
         history = []
         for t in range(max_iter):
